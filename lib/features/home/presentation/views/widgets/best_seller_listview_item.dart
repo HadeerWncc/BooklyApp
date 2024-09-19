@@ -8,14 +8,14 @@ class BestSellerListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      height: 113,
+      height: 125,
       child: Row(
         children: [
-           BestSellerImageItem(),
-           SizedBox(
+          BestSellerImageItem(),
+          SizedBox(
             width: 30,
           ),
-           BestSellerContentItem(),
+          BestSellerContentItem(),
         ],
       ),
     );
