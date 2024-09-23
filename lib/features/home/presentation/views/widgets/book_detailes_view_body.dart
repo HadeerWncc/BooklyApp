@@ -13,65 +13,74 @@ class BookDetailesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var windowSize = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-      child: Column(
-        children: [
-          const CustomBookDetailsappBar(),
-          const SizedBox(
-            height: 33,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: windowSize * .2),
-            child: const CustomBookImage(),
-          ),
-          const SizedBox(
-            height: 43,
-          ),
-          Text(
-            'The Jungle Book',
-            style: Styles.textStyle30.copyWith(fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          Opacity(
-            opacity: .7,
-            child: Text(
-              'Rudyard Kipling',
-              style: Styles.textStyle18.copyWith(
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w500,
-              ),
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+            child: Column(
+              children: [
+                const CustomBookDetailsappBar(),
+                const SizedBox(
+                  height: 33,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: windowSize * .2),
+                  child: const CustomBookImage(),
+                ),
+                const SizedBox(
+                  height: 43,
+                ),
+                Text(
+                  'The Jungle Book',
+                  style:
+                      Styles.textStyle30.copyWith(fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Opacity(
+                  opacity: .7,
+                  child: Text(
+                    'Rudyard Kipling',
+                    style: Styles.textStyle18.copyWith(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 17,
+                ),
+                const BookRating(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                const SizedBox(
+                  height: 37,
+                ),
+                const BookActions(),
+                const Expanded(
+                  child: SizedBox(
+                    height: 51,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'You can also like',
+                    style: Styles.textStyle14
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const SimilarListView()
+              ],
             ),
           ),
-          const SizedBox(
-            height: 17,
-          ),
-          const BookRating(
-            mainAxisAlignment: MainAxisAlignment.center,
-          ),
-          const SizedBox(
-            height: 37,
-          ),
-          const BookActions(),
-          const SizedBox(
-            height: 51,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'You can also like',
-              style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600),
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const SimilarListView()
-        ],
-      ),
+        )
+      ],
     );
   }
 }
-
