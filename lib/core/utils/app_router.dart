@@ -22,7 +22,7 @@ abstract class AppRouter {
         path: kBookDetailsView,
         builder: (context, state) => const BookDetailesView(),
       ),
-       GoRoute(
+      GoRoute(
         path: kSearchView,
         builder: (context, state) => const SearchView(),
       ),
