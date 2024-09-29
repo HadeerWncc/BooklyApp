@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 
 class BestSellerContentItem extends StatelessWidget {
   const BestSellerContentItem({
-    super.key,
+    super.key, required this.title, required this.subtitle, required this.rating, required this.views,
   });
-
+  final String title;
+  final String subtitle;
+  final double rating;
+  final int views;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,7 +20,7 @@ class BestSellerContentItem extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width * .5,
             child: Text(
-              'Harry Potter and the Goblet of Fire',
+              title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Styles.textStyle20.copyWith(fontFamily: kGtSectraFine),
@@ -26,10 +29,10 @@ class BestSellerContentItem extends StatelessWidget {
           const SizedBox(
             height: 3,
           ),
-          const Opacity(
+          Opacity(
             opacity: .7,
             child: Text(
-              'J.K. Rowling',
+              subtitle,
               style: Styles.textStyle14,
             ),
           ),
@@ -40,14 +43,14 @@ class BestSellerContentItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '19.99 €',
+                'Free',
                 style: Styles.textStyle20.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 15),
-                child: BookRating(),
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: BookRating(rating: rating,views: views,),
               ),
             ],
           )

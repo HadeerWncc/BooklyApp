@@ -11,9 +11,9 @@ class SimilarListView extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: CustomBookImage(imageUrl: 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',),
+          return Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: CustomBookImage(imageUrl: 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',borderRadius:  BorderRadius.circular(16),),
           );
         },
       ),
