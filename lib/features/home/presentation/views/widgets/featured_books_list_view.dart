@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/widgets/custom_error_widget.dart';
-import 'package:bookly_app/core/widgets/custom_loading_indecator.dart';
+import 'package:bookly_app/core/widgets/custom_book_img_loading_indecator.dart';
 import 'package:bookly_app/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +23,13 @@ class FeaturedBooksListView extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(right: 14),
                   child: CustomBookImage(
-                    borderRadius:  BorderRadius.circular(16),
-                    imageUrl: state
-                        .featuredbooks[index].volumeInfo.imageLinks.thumbnail,
+                    borderRadius: BorderRadius.circular(16),
+                    imageUrl: state.featuredbooks[index].volumeInfo.imageLinks
+                                ?.thumbnail ==
+                            null
+                        ? ''
+                        : state.featuredbooks[index].volumeInfo.imageLinks!
+                            .thumbnail,
                   ),
                 );
               },
@@ -34,7 +38,7 @@ class FeaturedBooksListView extends StatelessWidget {
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errorMsg: state.errorMsg);
         } else {
-          return const CustomLoadingIndecator();
+          return const CustomBookImgLoadingIndecator();
         }
       },
     );

@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 
 class BestSellerContentItem extends StatelessWidget {
   const BestSellerContentItem({
-    super.key, required this.title, required this.subtitle, required this.rating, required this.views,
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.rating,
+    required this.views,
   });
   final String title;
   final String subtitle;
@@ -33,6 +37,8 @@ class BestSellerContentItem extends StatelessWidget {
             opacity: .7,
             child: Text(
               subtitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Styles.textStyle14,
             ),
           ),
@@ -50,7 +56,10 @@ class BestSellerContentItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 15),
-                child: BookRating(rating: rating,views: views,),
+                child: BookRating(
+                  rating: rating,
+                  views: views,
+                ),
               ),
             ],
           )
