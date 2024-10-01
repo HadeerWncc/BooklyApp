@@ -10,11 +10,12 @@ class FeaturedBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height * .25;
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
         if (state is FeaturedBooksSuccess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * .25,
+            height: height,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
@@ -39,7 +40,10 @@ class FeaturedBooksListView extends StatelessWidget {
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errorMsg: state.errorMsg);
         } else {
-          return const CustomBookImgLoadingIndecator();
+          return CustomBookImgLoadingIndecator(
+            height: height,
+            itemCount: 3,
+          );
         }
       },
     );

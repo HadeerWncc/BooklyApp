@@ -10,11 +10,12 @@ class SimilarListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height * .15;
     return BlocBuilder<SimilarBooksCubit, SimilarBooksState>(
       builder: (context, state) {
         if (state is SimilarBooksSuccess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * .15,
+            height: height,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
@@ -36,7 +37,7 @@ class SimilarListView extends StatelessWidget {
         } else if (state is SimilarBooksFailure) {
           return CustomErrorWidget(errorMsg: state.errorMsg);
         } else {
-          return const CustomBookImgLoadingIndecator();
+          return CustomBookImgLoadingIndecator(height: height,itemCount: 4,);
         }
       },
     );

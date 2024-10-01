@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomBookImgLoadingIndecator extends StatelessWidget {
-  const CustomBookImgLoadingIndecator({super.key});
-
+  const CustomBookImgLoadingIndecator({super.key, required this.height, required this.itemCount});
+  final double height;
+  final int itemCount;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .25,
+      height: height,
       child: Shimmer.fromColors(
         baseColor: const Color.fromARGB(255, 209, 206, 206),
         highlightColor: const Color.fromARGB(255, 224, 220, 220),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
-          itemCount: 3,
+          itemCount: itemCount,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 14),
