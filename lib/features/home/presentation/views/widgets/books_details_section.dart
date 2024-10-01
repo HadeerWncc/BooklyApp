@@ -1,27 +1,33 @@
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/booking_rate.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/books_action.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 
 class BooksDetailsSection extends StatelessWidget {
-  const BooksDetailsSection({super.key});
-
+  const BooksDetailsSection({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     var windowSize = MediaQuery.of(context).size.width;
-
     return Column(
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: windowSize * .2),
-          child: CustomBookImage(imageUrl: 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',borderRadius:  BorderRadius.circular(16),),
+          child: CustomBookImage(
+            bookModel: bookModel,
+            imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? '',
+            // 'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
         const SizedBox(
           height: 43,
         ),
         Text(
-          'The Jungle Book',
+          textAlign: TextAlign.center,
+          bookModel.volumeInfo.title,
           style: Styles.textStyle30.copyWith(fontWeight: FontWeight.w500),
         ),
         const SizedBox(
@@ -30,7 +36,7 @@ class BooksDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            bookModel.volumeInfo.authors![0],
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
@@ -48,7 +54,9 @@ class BooksDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 37,
         ),
-        const BookActions(),
+        BookActions(
+          bookModel: bookModel,
+        ),
       ],
     );
   }
